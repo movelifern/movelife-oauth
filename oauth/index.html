@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MoveLife – voltando ao app</title>
+<style>
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#2E2E2E;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
+  .b{padding:24px;max-width:360px}
+  h1{font-style:italic;font-size:40px;margin:0 0 8px}
+  h1 span{color:#8DC63F}
+  a{display:inline-block;margin-top:20px;background:#8DC63F;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:bold}
+  p{color:#ddd;line-height:1.4}
+</style>
+</head>
+<body>
+<div class="b">
+  <h1>move<span>life</span></h1>
+  <p id="msg">Login concluído. Voltando para o app MoveLife…</p>
+  <a id="btn" href="movelife://oauth">Abrir o app MoveLife</a>
+</div>
+<script>
+  // Repassa code/state (ou error) do Intervals.icu para o app. Esta página não guarda nem envia nada.
+  var q = window.location.search || '';
+  var target = 'movelife://oauth' + q;
+  document.getElementById('btn').href = target;
+  if (/[?&]error=/.test(q)) document.getElementById('msg').textContent = 'O acesso não foi autorizado. Volte ao app para tentar de novo.';
+  window.location.replace(target);
+</script>
+</body>
+</html>
